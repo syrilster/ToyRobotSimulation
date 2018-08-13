@@ -1,4 +1,5 @@
 import Models.*;
+import Exception.GameException;
 
 public class ToyRobotSimulator {
     private Board squareTableTop;
@@ -25,7 +26,7 @@ public class ToyRobotSimulator {
                 placeCommand.execute();
                 break;
             case REPORT:
-                ReportCommand reportCommand = new ReportCommand(toyRobot);
+                ReportCommand reportCommand = new ReportCommand(toyRobot, squareTableTop);
                 commandOutput = reportCommand.execute();
                 break;
             case MOVE:
@@ -33,11 +34,11 @@ public class ToyRobotSimulator {
                 moveCommand.execute();
                 break;
             case LEFT:
-                LeftCommand leftCommand = new LeftCommand(toyRobot);
+                LeftCommand leftCommand = new LeftCommand(toyRobot, squareTableTop);
                 leftCommand.execute();
                 break;
             case RIGHT:
-                RightCommand rightCommand = new RightCommand(toyRobot);
+                RightCommand rightCommand = new RightCommand(toyRobot, squareTableTop);
                 rightCommand.execute();
                 break;
         }
@@ -50,7 +51,7 @@ public class ToyRobotSimulator {
         try {
             SimulationCommand.valueOf(command);
         } catch (IllegalArgumentException exception) {
-            throw new GameException("Invalid command");
+            throw new GameException("Invalid command" + " " + exception.getMessage());
         }
 
         if (SimulationCommand.valueOf(command) == SimulationCommand.PLACE) {
@@ -78,8 +79,11 @@ public class ToyRobotSimulator {
                 y = Integer.parseInt(placeCommandParams[1]);
                 direction = Direction.valueOf(placeCommandParams[2]);
                 position = new Position(x, y, direction);
+                if (!this.squareTableTop.isValidPosition(position)) {
+                    throw new GameException("PLACED outside the board");
+                }
             } catch (Exception e) {
-                throw new GameException("Invalid command");
+                throw new GameException("Invalid command" + " " + e.getMessage());
             }
         }
         return position;

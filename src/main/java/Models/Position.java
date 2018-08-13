@@ -1,5 +1,7 @@
 package Models;
 
+import Exception.GameException;
+
 public class Position {
     private int x;
     private int y;
@@ -35,23 +37,23 @@ public class Position {
         this.direction = direction;
     }
 
-    Position getNextPosition() throws GameException {
+    public Position getNextPosition() throws GameException {
         if (this.getDirection() == null)
             throw new GameException("Toy Robot is in a invalid position");
 
         // new position to be set as per the direction
         Position newPosition = null;
         switch (this.getDirection()) {
-            case Direction.NORTH:
+            case NORTH:
                 newPosition = new Position(this.getX(), this.getY() + 1, this.getDirection());
                 break;
-            case Direction.SOUTH:
+            case SOUTH:
                 newPosition = new Position(this.getX(), this.getY() - 1, this.getDirection());
                 break;
-            case Direction.EAST:
+            case EAST:
                 newPosition = new Position(this.getX() + 1, this.getY(), this.getDirection());
                 break;
-            case Direction.WEST:
+            case WEST:
                 newPosition = new Position(this.getX() - 1, this.getY(), this.getDirection());
                 break;
         }

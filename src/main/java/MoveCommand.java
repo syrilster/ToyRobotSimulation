@@ -1,6 +1,7 @@
 import Models.Board;
 import Models.Position;
 import Models.Robot;
+import Exception.GameException;
 
 public class MoveCommand implements Command {
     private Robot toyRobot;
@@ -16,8 +17,11 @@ public class MoveCommand implements Command {
     public String execute() {
         Position newPosition;
         try {
-            newPosition = toyRobot.getPosition().getNextPosition();
-            toyRobot.setPosition(newPosition);
+            if (squareTableTop.isValidPosition(toyRobot.getPosition())) {
+                newPosition = toyRobot.getPosition().getNextPosition();
+                if (squareTableTop.isValidPosition(newPosition))
+                    toyRobot.setPosition(newPosition);
+            }
         } catch (GameException e) {
             e.printStackTrace();
         }

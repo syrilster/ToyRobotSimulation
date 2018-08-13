@@ -1,6 +1,7 @@
 import Models.Board;
 import Models.Position;
 import Models.Robot;
+import Exception.GameException;
 
 public class PlaceCommand implements Command {
     private Robot toyRobot;

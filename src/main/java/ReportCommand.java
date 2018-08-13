@@ -1,10 +1,13 @@
+import Models.Board;
 import Models.Robot;
 
 public class ReportCommand implements Command {
     private Robot toyRobot;
+    private Board squareTableTop;
 
-    public ReportCommand(Robot toyRobot) {
+    public ReportCommand(Robot toyRobot, Board squareTableTop) {
         this.toyRobot = toyRobot;
+        this.squareTableTop = squareTableTop;
     }
 
     @Override
@@ -13,10 +16,10 @@ public class ReportCommand implements Command {
     }
 
     private String report() {
-        if (toyRobot.getPosition() == null)
-            return null;
-
-        return toyRobot.getPosition().getX() + "," + toyRobot.getPosition().getY() + ","
-                + toyRobot.getPosition().getDirection().toString();
+        if (squareTableTop.isValidPosition(toyRobot.getPosition())) {
+            return toyRobot.getPosition().getX() + "," + toyRobot.getPosition().getY() + ","
+                    + toyRobot.getPosition().getDirection().toString();
+        }
+        return "";
     }
 }

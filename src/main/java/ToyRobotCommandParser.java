@@ -1,5 +1,7 @@
+import Models.Board;
 import Models.Robot;
 import Models.SquareTableTop;
+import Exception.GameException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +14,7 @@ public class ToyRobotCommandParser {
         Scanner standardInput = new Scanner(System.in);
         String command;
         //Init the game
-        SquareTableTop squareBoard = new SquareTableTop(5, 5);
+        SquareTableTop squareBoard = new SquareTableTop(Board.BOARD_ROWS, Board.BOARD_COLUMNS);
         Robot toyRobot = new Robot();
         ToyRobotSimulator game = new ToyRobotSimulator(squareBoard, toyRobot);
 
