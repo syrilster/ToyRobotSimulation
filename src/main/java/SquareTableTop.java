@@ -11,7 +11,7 @@ public class SquareTableTop implements Board {
     // co-ordinates can't be negative and larger than board size
     @Override
     public boolean isValidPosition(Position position) {
-        return (position.getX() > this.columns || position.getX() < 0
+        return !(position.getX() > this.columns || position.getX() < 0
                 || position.getY() > this.rows || position.getY() < 0);
     }
 }
