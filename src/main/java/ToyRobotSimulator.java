@@ -67,7 +67,6 @@ public class ToyRobotSimulator {
 
     private Position populateInitialPosition(String command, String placeCommandArgs) throws GameException {
         Position position = null;
-        // validate PLACE command params
         String[] placeCommandParams;
         int x;
         int y;
@@ -79,6 +78,7 @@ public class ToyRobotSimulator {
                 y = Integer.parseInt(placeCommandParams[1]);
                 direction = Direction.valueOf(placeCommandParams[2]);
                 position = new Position(x, y, direction);
+                //TODO required is the application needs to throw an exception
                 /*if (!this.squareTableTop.isValidPosition(position)) {
                     throw new GameException("PLACED outside the board");
                 }*/
