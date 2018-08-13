@@ -1,3 +1,5 @@
+import Models.*;
+
 public class ToyRobotSimulator {
     private Board squareTableTop;
     private Robot toyRobot;

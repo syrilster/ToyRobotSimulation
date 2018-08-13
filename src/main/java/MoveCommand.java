@@ -1,3 +1,7 @@
+import Models.Board;
+import Models.Position;
+import Models.Robot;
+
 public class MoveCommand implements Command {
     private Robot toyRobot;
     private Board squareTableTop;

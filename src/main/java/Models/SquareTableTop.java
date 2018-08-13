@@ -1,3 +1,6 @@
+package Models;
+
+import Models.Position;
 
 public class SquareTableTop implements Board {
     private int rows;

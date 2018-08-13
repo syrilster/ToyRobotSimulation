@@ -1,3 +1,5 @@
+import Models.Robot;
+
 public class ReportCommand implements Command {
     private Robot toyRobot;
 

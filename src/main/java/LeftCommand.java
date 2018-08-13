@@ -1,3 +1,5 @@
+import Models.Robot;
+
 public class LeftCommand implements Command {
     private Robot toyRobot;
 

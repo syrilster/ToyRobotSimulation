@@ -1,3 +1,5 @@
+package Models;
+
 public class Position {
     private int x;
     private int y;
@@ -40,16 +42,16 @@ public class Position {
         // new position to be set as per the direction
         Position newPosition = null;
         switch (this.getDirection()) {
-            case NORTH:
+            case Direction.NORTH:
                 newPosition = new Position(this.getX(), this.getY() + 1, this.getDirection());
                 break;
-            case SOUTH:
+            case Direction.SOUTH:
                 newPosition = new Position(this.getX(), this.getY() - 1, this.getDirection());
                 break;
-            case EAST:
+            case Direction.EAST:
                 newPosition = new Position(this.getX() + 1, this.getY(), this.getDirection());
                 break;
-            case WEST:
+            case Direction.WEST:
                 newPosition = new Position(this.getX() - 1, this.getY(), this.getDirection());
                 break;
         }
