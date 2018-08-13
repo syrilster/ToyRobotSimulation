@@ -6,7 +6,6 @@ import Exception.GameException;
 public class MoveCommand implements Command {
     private Robot toyRobot;
     private Board squareTableTop;
-    private Position position;
 
     public MoveCommand(Robot toyRobot, Board squareTableTop) {
         this.toyRobot = toyRobot;

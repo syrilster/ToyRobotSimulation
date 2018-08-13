@@ -79,9 +79,9 @@ public class ToyRobotSimulator {
                 y = Integer.parseInt(placeCommandParams[1]);
                 direction = Direction.valueOf(placeCommandParams[2]);
                 position = new Position(x, y, direction);
-                if (!this.squareTableTop.isValidPosition(position)) {
+                /*if (!this.squareTableTop.isValidPosition(position)) {
                     throw new GameException("PLACED outside the board");
-                }
+                }*/
             } catch (Exception e) {
                 throw new GameException("Invalid command" + " " + e.getMessage());
             }

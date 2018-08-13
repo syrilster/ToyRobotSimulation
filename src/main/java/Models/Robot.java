@@ -1,7 +1,5 @@
 package Models;
 
-import Models.Position;
-
 public class Robot {
     private Position position;
 
