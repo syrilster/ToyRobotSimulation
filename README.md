@@ -7,3 +7,4 @@ easy to extend in case we have a new command later.
 * The models required for this program has been built keeping in mind the SRP principle.
 * Used the TDD approach to fix bugs found after the initial development phase.
 * This program has favoured the usage of small intuitive functions where applicable. 
+* Added TODO comments where applicable. Especially with the command output as the specification mentioned satndard output.
