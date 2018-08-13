@@ -4,9 +4,9 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
 
-public class MainParser {
+public class ToyRobotCommandParser {
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(MainParser.class);
+        Logger logger = LoggerFactory.getLogger(ToyRobotCommandParser.class);
         Scanner standardInput = new Scanner(System.in);
         String command;
         //Init the game

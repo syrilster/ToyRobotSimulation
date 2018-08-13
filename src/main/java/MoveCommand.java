@@ -9,7 +9,7 @@ public class MoveCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         Position newPosition;
         try {
             newPosition = toyRobot.getPosition().getNextPosition();
@@ -17,13 +17,6 @@ public class MoveCommand implements Command {
         } catch (GameException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Moves the robot one step forward in the direction it is facing.
-     */
-    public void move(Position newPosition) {
-        // change position
-        this.position = newPosition;
+        return "";
     }
 }

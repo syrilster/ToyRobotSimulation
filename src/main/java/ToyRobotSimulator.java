@@ -23,15 +23,20 @@ public class ToyRobotSimulator {
                 placeCommand.execute();
                 break;
             case REPORT:
-                commandOutput = report();
+                ReportCommand reportCommand = new ReportCommand(toyRobot);
+                commandOutput = reportCommand.execute();
                 break;
             case MOVE:
                 MoveCommand moveCommand = new MoveCommand(toyRobot, squareTableTop);
                 moveCommand.execute();
                 break;
             case LEFT:
+                LeftCommand leftCommand = new LeftCommand(toyRobot);
+                leftCommand.execute();
                 break;
             case RIGHT:
+                RightCommand rightCommand = new RightCommand(toyRobot);
+                rightCommand.execute();
                 break;
         }
 
@@ -76,13 +81,5 @@ public class ToyRobotSimulator {
             }
         }
         return position;
-    }
-
-    private String report() {
-        if (toyRobot.getPosition() == null)
-            return null;
-
-        return toyRobot.getPosition().getX() + "," + toyRobot.getPosition().getY() + ","
-                + toyRobot.getPosition().getDirection().toString();
     }
 }

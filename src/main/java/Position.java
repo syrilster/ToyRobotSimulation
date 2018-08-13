@@ -29,6 +29,10 @@ public class Position {
         return direction;
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
     Position getNextPosition() throws GameException {
         if (this.getDirection() == null)
             throw new GameException("Toy Robot is in a invalid position");

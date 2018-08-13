@@ -1,5 +1,3 @@
-import javafx.geometry.Pos;
-
 public class PlaceCommand implements Command {
     private Robot toyRobot;
     private Board squareTableTop;
@@ -12,12 +10,13 @@ public class PlaceCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         try {
             placeRobot(position);
         } catch (GameException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     private void placeRobot(Position position) throws GameException {
@@ -35,7 +34,7 @@ public class PlaceCommand implements Command {
         if (!squareTableTop.isValidPosition(position))
             return;
 
-        // if position is valid then assign the values
+        //Control reached here means the position is valid
         toyRobot.setPosition(position);
     }
 }
