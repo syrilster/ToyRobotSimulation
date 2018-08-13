@@ -19,7 +19,7 @@ public class MoveCommand implements Command {
             if (squareTableTop.isValidPosition(toyRobot.getPosition())) {
                 newPosition = toyRobot.getPosition().getNextPosition();
                 if (squareTableTop.isValidPosition(newPosition))
-                    toyRobot.setPosition(newPosition);
+                    toyRobot.move(newPosition);
             }
         } catch (GameException e) {
             e.printStackTrace();

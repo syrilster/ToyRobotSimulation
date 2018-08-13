@@ -2,7 +2,7 @@ import Models.Direction;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DirectionTest {
+public class TestDirection {
     @Test
     public void testRotateLeftDirection() {
         Direction direction = Direction.WEST;

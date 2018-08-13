@@ -3,6 +3,13 @@ package Models;
 public class Robot {
     private Position position;
 
+    public Robot() {
+    }
+
+    public Robot(Position position) {
+        this.position = position;
+    }
+
     public Position getPosition() {
         return position;
     }
@@ -23,5 +30,12 @@ public class Robot {
      */
     public void rotateRight() {
         this.position.setDirection(this.position.getDirection().rightDirection());
+    }
+
+    /**
+     * Moves the robot one unit forward in the direction it is currently facing
+     */
+    public void move(Position newPosition) {
+        this.position = newPosition;
     }
 }
