@@ -33,7 +33,7 @@ public class Robot {
     }
 
     /**
-     * Moves the robot one unit forward in the direction it is currently facing
+     * Moves the robot one unit forward
      */
     public void move(Position newPosition) {
         this.position = newPosition;

@@ -15,13 +15,12 @@ public class PlaceCommand implements Command {
     }
 
     @Override
-    public String execute() {
+    public void execute() {
         try {
             placeRobot(position);
         } catch (GameException e) {
             e.printStackTrace();
         }
-        return "";
     }
 
     private void placeRobot(Position position) throws GameException {

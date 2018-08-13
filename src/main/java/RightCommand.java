@@ -11,10 +11,9 @@ public class RightCommand implements Command {
     }
 
     @Override
-    public String execute() {
+    public void execute() {
         if (squareTableTop.isValidPosition(toyRobot.getPosition())) {
             toyRobot.rotateRight();
         }
-        return "";
     }
 }

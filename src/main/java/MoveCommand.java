@@ -13,7 +13,7 @@ public class MoveCommand implements Command {
     }
 
     @Override
-    public String execute() {
+    public void execute() {
         Position newPosition;
         try {
             if (squareTableTop.isValidPosition(toyRobot.getPosition())) {
@@ -24,6 +24,5 @@ public class MoveCommand implements Command {
         } catch (GameException e) {
             e.printStackTrace();
         }
-        return "";
     }
 }

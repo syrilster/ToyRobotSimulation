@@ -1,7 +1,7 @@
 import Models.Board;
 import Models.Robot;
 
-public class ReportCommand implements Command {
+public class ReportCommand implements OutPutCommand {
     private Robot toyRobot;
     private Board squareTableTop;
 
