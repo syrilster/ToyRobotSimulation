@@ -38,25 +38,6 @@ public class ToyRobotSimulator {
         return commandOutput;
     }
 
-    private void placeRobot(Position position) throws GameException {
-
-        if (squareTableTop == null)
-            throw new GameException("Board is not ready");
-
-        if (position == null)
-            throw new GameException("Invalid position for the robot");
-
-        if (position.getDirection() == null)
-            throw new GameException("Invalid direction provided");
-
-        // validate the position
-        if (!squareTableTop.isValidPosition(position))
-            return;
-
-        // if position is valid then assign the values
-        toyRobot.setPosition(position);
-    }
-
     private String validateInputCommands(String command, String[] arguments) throws GameException {
         String placeCommandArguments = "";
         try {
