@@ -10,7 +10,7 @@ easy to extend in case we have a new command later.
 * Added TODO comments where applicable. Especially with the command output as the specification mentioned satndard output.
 * Project dependencies are managed by Maven.
 
-## Running the application
+## Running/packaging the application
 * **ToyRobotCommandRunner** is the application entry point which accepts the user input from command line.
 * Project can be compiled using **mvn compile**
 * Tests can be run using the command **mvn test**
