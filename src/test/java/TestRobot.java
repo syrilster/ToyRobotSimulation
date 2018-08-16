@@ -1,7 +1,6 @@
 import exception.InvalidPositionException;
 import models.Direction;
 import models.Position;
-import exception.GameException;
 import models.Robot;
 import org.junit.Assert;
 import org.junit.Test;

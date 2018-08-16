@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ToyRobotSimulationTest {
-    final int BOARD_ROWS = 5;
-    final int BOARD_COLUMNS = 5;
+    static final int BOARD_ROWS = 5;
+    static final int BOARD_COLUMNS = 5;
 
     private Board board;
     Robot toyRobot;
