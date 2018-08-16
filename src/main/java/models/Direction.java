@@ -13,10 +13,6 @@ public enum Direction {
         this.directionValue = direction;
     }
 
-    public int getDirection() {
-        return directionValue;
-    }
-
     static {
         for (Direction directionEnum : Direction.values()) {
             directionMap.put(directionEnum.directionValue, directionEnum);

@@ -1,6 +1,6 @@
 package game;
 
-import command.CommandFactory;
+import factory.CommandFactory;
 import command.CommandResult;
 import exception.InvalidCommandException;
 import exception.InvalidPositionException;
@@ -44,7 +44,7 @@ public class ToyRobotSimulator {
         return CommandValidator.validateAndGetInputCommand(command);
     }
 
-    private boolean isInputCommandPlace(SimulationCommand command) throws InvalidCommandException {
+    private boolean isInputCommandPlace(SimulationCommand command) {
         return CommandValidator.isInputCommandPlace(command);
     }
 
@@ -56,16 +56,8 @@ public class ToyRobotSimulator {
         return squareTableTop;
     }
 
-    public void setSquareTableTop(Board squareTableTop) {
-        this.squareTableTop = squareTableTop;
-    }
-
     public Robot getToyRobot() {
         return toyRobot;
-    }
-
-    public void setToyRobot(Robot toyRobot) {
-        this.toyRobot = toyRobot;
     }
 
     public Position getNewPosition() {

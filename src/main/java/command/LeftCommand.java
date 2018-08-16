@@ -1,6 +1,5 @@
 package command;
 
-import models.Position;
 import models.Robot;
 import utils.CommandUtil;
 

@@ -104,5 +104,4 @@ public class ToyRobotSimulationTest {
         game.executeCommand("LEFT");
         Assert.assertEquals("Toy Robot position is: (0, 3) facing WEST", game.executeCommand("REPORT"));
     }
-
 }

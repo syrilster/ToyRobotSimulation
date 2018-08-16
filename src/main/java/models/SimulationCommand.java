@@ -12,8 +12,4 @@ public enum SimulationCommand {
     SimulationCommand(String commandName) {
         this.commandName = commandName;
     }
-
-    public String getCommandName() {
-        return commandName;
-    }
 }

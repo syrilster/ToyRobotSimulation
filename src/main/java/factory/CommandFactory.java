@@ -1,5 +1,6 @@
-package command;
+package factory;
 
+import command.*;
 import game.ToyRobotSimulator;
 import exception.*;
 import models.SimulationCommand;

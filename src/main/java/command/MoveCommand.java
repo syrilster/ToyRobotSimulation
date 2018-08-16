@@ -1,12 +1,10 @@
 package command;
 
+import exception.InvalidPositionException;
 import models.Board;
 import models.Position;
 import models.Robot;
-import exception.*;
 import utils.CommandUtil;
-
-import java.util.Objects;
 
 public class MoveCommand implements Command {
     private Robot toyRobot;
