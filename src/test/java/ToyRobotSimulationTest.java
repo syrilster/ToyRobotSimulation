@@ -1,7 +1,8 @@
-import Exception.GameException;
-import Models.Board;
-import Models.Robot;
-import Models.SquareTableTop;
+import exception.*;
+import game.ToyRobotSimulator;
+import models.Board;
+import models.Robot;
+import models.SquareTableTop;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,62 +32,62 @@ public class ToyRobotSimulationTest {
     }
 
     @Test
-    public void basicPlacingTest() throws GameException {
+    public void basicPlacingTest() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("MOVE");
-        Assert.assertEquals("0,1,NORTH", game.executeCommand("REPORT"));
+        Assert.assertEquals("Toy Robot position is: (0, 1) facing NORTH", game.executeCommand("REPORT"));
     }
 
-    @Test
-    public void testOutOfBoardPlacementIgnored() throws GameException {
+    @Test(expected = InvalidPositionException.class)
+    public void testOutOfBoardPlacementIgnored() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 10,0,NORTH");
-        Assert.assertEquals("", game.executeCommand("REPORT"));
+        game.executeCommand("REPORT");
     }
 
-    @Test
-    public void testCommandsBeforePlaceAreIgnored() throws GameException {
+    @Test(expected = InvalidPositionException.class)
+    public void testCommandsBeforePlaceAreIgnored() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("MOVE");
         game.executeCommand("LEFT");
         game.executeCommand("RIGHT");
-        Assert.assertEquals("", game.executeCommand("REPORT"));
+        game.executeCommand("REPORT");
     }
 
     @Test
-    public void testAllCommands() throws GameException {
+    public void testAllCommands() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("MOVE");
         game.executeCommand("MOVE");
         game.executeCommand("LEFT");
         game.executeCommand("MOVE");
-        Assert.assertEquals("3,3,NORTH", game.executeCommand("REPORT"));
+        Assert.assertEquals("Toy Robot position is: (3, 3) facing NORTH", game.executeCommand("REPORT"));
     }
 
-    @Test(expected = GameException.class)
-    public void testInvalidPlaceCommand() throws GameException {
+    @Test(expected = InvalidCommandException.class)
+    public void testInvalidPlaceCommand() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,EAST");
     }
 
     @Test
-    public void testDuplicatePlaceCommands() throws GameException {
+    public void testDuplicatePlaceCommands() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("MOVE");
-        Assert.assertEquals("0,1,NORTH", game.executeCommand("REPORT"));
+        Assert.assertEquals("Toy Robot position is: (0, 1) facing NORTH", game.executeCommand("REPORT"));
 
         game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("LEFT");
-        Assert.assertEquals("0,0,WEST", game.executeCommand("REPORT"));
+        Assert.assertEquals("Toy Robot position is: (0, 0) facing WEST", game.executeCommand("REPORT"));
 
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("MOVE");
         game.executeCommand("MOVE");
         game.executeCommand("LEFT");
         game.executeCommand("MOVE");
-        Assert.assertEquals("3,3,NORTH", game.executeCommand("REPORT"));
+        Assert.assertEquals("Toy Robot position is: (3, 3) facing NORTH", game.executeCommand("REPORT"));
     }
 
-    @Test(expected = GameException.class)
-    public void testInvalidMoveAndRightCommands() throws GameException {
+    @Test(expected = InvalidCommandException.class)
+    public void testInvalidMoveAndRightCommands() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("movebla");
         game.executeCommand("leftbb");
@@ -95,26 +96,13 @@ public class ToyRobotSimulationTest {
     }
 
     @Test
-    public void testMoveCommand() throws GameException {
-        game.executeCommand("PLACE 0,0,SOUTH");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
-        game.executeCommand("MOVE");
+    public void testMoveCommand() throws InvalidCommandException, InvalidPositionException {
+        game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("MOVE");
         game.executeCommand("MOVE");
         game.executeCommand("MOVE");
         game.executeCommand("LEFT");
-        game.executeCommand("MOVE");
-        Assert.assertEquals("1,0,EAST", game.executeCommand("REPORT"));
+        Assert.assertEquals("Toy Robot position is: (0, 3) facing WEST", game.executeCommand("REPORT"));
     }
 
 }

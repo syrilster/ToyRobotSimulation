@@ -1,5 +1,6 @@
-import Models.Position;
-import Models.SquareTableTop;
+import exception.InvalidPositionException;
+import models.Position;
+import models.SquareTableTop;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +21,8 @@ public class TestSquareBoard {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void testInvalidPositionWhenRobotPlacedOutside() {
+    @Test(expected = InvalidPositionException.class)
+    public void testInvalidPositionWhenRobotPlacedOutside() throws InvalidPositionException {
         when(mockPosition.getX()).thenReturn(10);
         when(mockPosition.getY()).thenReturn(10);
 
@@ -29,15 +30,15 @@ public class TestSquareBoard {
     }
 
     @Test
-    public void testValidPositionWhenRobotPlacedWithinTheBoard() {
+    public void testValidPositionWhenRobotPlacedWithinTheBoard() throws InvalidPositionException {
         when(mockPosition.getX()).thenReturn(1);
         when(mockPosition.getY()).thenReturn(1);
 
         Assert.assertTrue(board.isValidPosition(mockPosition));
     }
 
-    @Test
-    public void testInvalidPositionWhenRobotHavingNegativeValue() {
+    @Test(expected = InvalidPositionException.class)
+    public void testInvalidPositionWhenRobotHavingNegativeValue() throws InvalidPositionException {
         when(mockPosition.getX()).thenReturn(-1);
         when(mockPosition.getY()).thenReturn(-1);
 

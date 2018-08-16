@@ -1,21 +1,25 @@
-import Exception.GameException;
-import Models.Board;
-import Models.Robot;
-import Models.SquareTableTop;
+import exception.*;
+import game.ToyRobotSimulator;
+import models.Board;
+import models.Robot;
+import models.SquareTableTop;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import utils.CommandUtil;
 
 import java.util.Scanner;
 
 
 public class ToyRobotCommandRunner {
     public static void main(String[] args) {
-        // TODO replace all System.out.println with SLF4J logging.
-        // Logger logger = LoggerFactory.getLogger(ToyRobotCommandRunner.class);
+        Logger logger = LoggerFactory.getLogger(ToyRobotCommandRunner.class);
         Scanner standardInput = new Scanner(System.in);
         String command;
         //Init the game
         SquareTableTop squareBoard = new SquareTableTop(Board.BOARD_ROWS, Board.BOARD_COLUMNS);
         Robot toyRobot = new Robot();
         ToyRobotSimulator game = new ToyRobotSimulator(squareBoard, toyRobot);
+        logger.info("Program Command Usage: \n" + CommandUtil.GAME_COMMAND_HELPER);
 
         boolean running = true;
         while (running) {
@@ -23,13 +27,10 @@ public class ToyRobotCommandRunner {
             if ("EXIT".equalsIgnoreCase(command)) {
                 running = false;
                 System.exit(1);
-            } else {
-                try {
-                    //TODO replace with logger.info(game.executeCommand(command));
-                    System.out.println(game.executeCommand(command));
-                } catch (GameException e) {
-                    e.printStackTrace();
-                }
+            } else try {
+                logger.info(game.executeCommand(command));
+            } catch (InvalidCommandException | InvalidPositionException exception) {
+                logger.error("Exception: " + exception.getMessage());
             }
         }
     }

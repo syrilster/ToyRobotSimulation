@@ -1,4 +1,4 @@
-import Models.Direction;
+import models.Direction;
 import org.junit.Assert;
 import org.junit.Test;
 

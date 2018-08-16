@@ -1,6 +1,7 @@
-package Models;
+package models;
 
-import Exception.GameException;
+import exception.ExceptionConstants;
+import exception.InvalidPositionException;
 
 public class Position {
     private int x;
@@ -37,9 +38,9 @@ public class Position {
         this.direction = direction;
     }
 
-    public Position getNextPosition() throws GameException {
+    public Position getNextPosition() throws InvalidPositionException {
         if (this.getDirection() == null)
-            throw new GameException("Toy Robot is in a invalid position");
+            throw new InvalidPositionException(ExceptionConstants.TOY_ROBOT_INVALID_POSITION);
 
         // new position to be set as per the direction
         Position newPosition = null;

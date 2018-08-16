@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,4 +38,7 @@ public enum Direction {
         return Direction.valueOf(directionMap.get(newIndex).toString());
     }
 
+    public static Map<Integer, Direction> getDirectionMap() {
+        return directionMap;
+    }
 }

@@ -1,4 +1,7 @@
-package Models;
+package models;
+
+import validator.PositionValidator;
+import exception.InvalidPositionException;
 
 public class SquareTableTop implements Board {
     private int rows;
@@ -11,9 +14,8 @@ public class SquareTableTop implements Board {
 
     // co-ordinates can't be negative and larger than board size
     @Override
-    public boolean isValidPosition(Position position) {
-        return !(position == null || position.getX() > this.getColumns() || position.getX() < 0
-                || position.getY() > this.getRows() || position.getY() < 0);
+    public boolean isValidPosition(Position position) throws InvalidPositionException {
+        return PositionValidator.isValidPosition(position, this);
     }
 
     public int getRows() {
