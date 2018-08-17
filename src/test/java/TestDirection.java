@@ -1,10 +1,11 @@
 import models.Direction;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestDirection {
     private Direction direction;
@@ -24,16 +25,16 @@ public class TestDirection {
         Direction direction = Direction.WEST;
 
         direction = direction.leftDirection();
-        Assert.assertEquals(Direction.SOUTH, direction);
+        assertEquals(Direction.SOUTH, direction);
 
         direction = direction.leftDirection();
-        Assert.assertEquals(Direction.EAST, direction);
+        assertEquals(Direction.EAST, direction);
 
         direction = direction.leftDirection();
-        Assert.assertEquals(Direction.NORTH, direction);
+        assertEquals(Direction.NORTH, direction);
 
         direction = direction.leftDirection();
-        Assert.assertEquals(Direction.WEST, direction);
+        assertEquals(Direction.WEST, direction);
     }
 
     @Test
@@ -41,20 +42,20 @@ public class TestDirection {
         Direction direction = Direction.NORTH;
 
         direction = direction.rightDirection();
-        Assert.assertEquals(Direction.EAST, direction);
+        assertEquals(Direction.EAST, direction);
 
         direction = direction.rightDirection();
-        Assert.assertEquals(Direction.SOUTH, direction);
+        assertEquals(Direction.SOUTH, direction);
 
         direction = direction.rightDirection();
-        Assert.assertEquals(Direction.WEST, direction);
+        assertEquals(Direction.WEST, direction);
 
         direction = direction.rightDirection();
-        Assert.assertEquals(Direction.NORTH, direction);
+        assertEquals(Direction.NORTH, direction);
     }
 
     @Test
     public void rotateShould_ReturnSouth_WhenInitialDirectionIsEast() {
-        Assert.assertEquals(Direction.SOUTH, direction.rotate(5));
+        assertEquals(Direction.SOUTH, direction.rotate(5));
     }
 }

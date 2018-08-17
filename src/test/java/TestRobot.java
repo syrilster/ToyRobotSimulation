@@ -1,8 +1,9 @@
 import models.Direction;
 import models.Position;
 import models.Robot;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestRobot {
     @Test
@@ -10,9 +11,9 @@ public class TestRobot {
         Robot robot = new Robot(new Position(0, 0, Direction.NORTH));
 
         robot.move(robot.getPosition().getNextPosition());
-        Assert.assertEquals(0, robot.getPosition().getX());
-        Assert.assertEquals(1, robot.getPosition().getY());
-        Assert.assertEquals(Direction.NORTH, robot.getPosition().getDirection());
+        assertEquals(0, robot.getPosition().getX());
+        assertEquals(1, robot.getPosition().getY());
+        assertEquals(Direction.NORTH, robot.getPosition().getDirection());
     }
 
     @Test
@@ -21,9 +22,9 @@ public class TestRobot {
 
         robot.rotateLeft();
         robot.move(robot.getPosition().getNextPosition());
-        Assert.assertEquals(0, robot.getPosition().getX());
-        Assert.assertEquals(1, robot.getPosition().getY());
-        Assert.assertEquals(Direction.NORTH, robot.getPosition().getDirection());
+        assertEquals(0, robot.getPosition().getX());
+        assertEquals(1, robot.getPosition().getY());
+        assertEquals(Direction.NORTH, robot.getPosition().getDirection());
     }
 
     @Test
@@ -32,8 +33,8 @@ public class TestRobot {
 
         robot.rotateRight();
         robot.move(robot.getPosition().getNextPosition());
-        Assert.assertEquals(0, robot.getPosition().getX());
-        Assert.assertEquals(-1, robot.getPosition().getY());
-        Assert.assertEquals(Direction.SOUTH, robot.getPosition().getDirection());
+        assertEquals(0, robot.getPosition().getX());
+        assertEquals(-1, robot.getPosition().getY());
+        assertEquals(Direction.SOUTH, robot.getPosition().getDirection());
     }
 }

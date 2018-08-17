@@ -1,3 +1,4 @@
+import command.CommandResult;
 import exception.*;
 import game.ToyRobotSimulator;
 import models.Board;
@@ -11,27 +12,42 @@ import java.util.Scanner;
 
 
 public class ToyRobotCommandRunner {
+    static Logger logger = LoggerFactory.getLogger(ToyRobotCommandRunner.class);
+    static String commandResult;
+
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(ToyRobotCommandRunner.class);
-        Scanner standardInput = new Scanner(System.in);
-        String command;
         //Init the game
         SquareTableTop squareBoard = new SquareTableTop(Board.BOARD_ROWS, Board.BOARD_COLUMNS);
         Robot toyRobot = new Robot();
         ToyRobotSimulator game = new ToyRobotSimulator(squareBoard, toyRobot);
         logger.info("Program Command Usage: \n" + CommandUtil.GAME_COMMAND_HELPER);
 
+        startGameSimulation(game);
+    }
+
+    private static void startGameSimulation(ToyRobotSimulator game) {
+        String command;
+        Scanner standardInput = getStandardInput();
         boolean running = true;
         while (running) {
-            command = standardInput.nextLine();
+            command = getCommandFromStandardInput(standardInput);
             if ("EXIT".equalsIgnoreCase(command)) {
-                running = false;
                 System.exit(1);
             } else try {
-                logger.info(game.executeCommand(command));
+                commandResult = game.executeCommand(command);
+                logger.info(commandResult);
             } catch (InvalidCommandException | InvalidPositionException exception) {
-                logger.error("Exception: " + exception.getMessage());
+                commandResult = exception.getMessage();
+                logger.error("Exception: " + commandResult);
             }
         }
+    }
+
+    private static String getCommandFromStandardInput(Scanner standardInput) {
+        return standardInput.hasNextLine() ? standardInput.nextLine() : "exit";
+    }
+
+    static Scanner getStandardInput() {
+        return new Scanner(System.in);
     }
 }

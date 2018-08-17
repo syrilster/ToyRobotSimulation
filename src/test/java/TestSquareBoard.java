@@ -1,12 +1,13 @@
 import exception.InvalidPositionException;
 import models.Position;
 import models.SquareTableTop;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 public class TestSquareBoard {
@@ -26,7 +27,7 @@ public class TestSquareBoard {
         when(mockPosition.getX()).thenReturn(10);
         when(mockPosition.getY()).thenReturn(10);
 
-        Assert.assertFalse(board.isValidPosition(mockPosition));
+        assertFalse(board.isValidPosition(mockPosition));
     }
 
     @Test
@@ -34,7 +35,7 @@ public class TestSquareBoard {
         when(mockPosition.getX()).thenReturn(1);
         when(mockPosition.getY()).thenReturn(1);
 
-        Assert.assertTrue(board.isValidPosition(mockPosition));
+        assertTrue(board.isValidPosition(mockPosition));
     }
 
     @Test(expected = InvalidPositionException.class)
@@ -42,6 +43,6 @@ public class TestSquareBoard {
         when(mockPosition.getX()).thenReturn(-1);
         when(mockPosition.getY()).thenReturn(-1);
 
-        Assert.assertFalse(board.isValidPosition(mockPosition));
+        assertFalse(board.isValidPosition(mockPosition));
     }
 }
