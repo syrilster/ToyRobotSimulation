@@ -104,4 +104,21 @@ public class ToyRobotSimulationTest {
         game.executeCommand("LEFT");
         Assert.assertEquals("Toy Robot position is: (0, 3) facing WEST", game.executeCommand("REPORT"));
     }
+
+    @Test
+    public void executeCommandRight_PlacedAtEast_Should_ReportRobotFacingNorth() throws InvalidCommandException, InvalidPositionException {
+        game.executeCommand("PLACE 1,1,EAST");
+        game.executeCommand("RIGHT");
+        Assert.assertEquals("Toy Robot position is: (1, 1) facing SOUTH", game.executeCommand("REPORT"));
+    }
+
+    @Test(expected = InvalidCommandException.class)
+    public void executeCommandPlace_WithoutArgs_ExceptionThrown() throws InvalidCommandException, InvalidPositionException {
+        game.executeCommand("PLACE");
+    }
+
+    @Test(expected = InvalidPositionException.class)
+    public void executeCommandPlace_WithInvalidDirection_ExceptionThrown() throws InvalidCommandException, InvalidPositionException {
+        game.executeCommand("PLACE 0,0,test");
+    }
 }

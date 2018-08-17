@@ -2,26 +2,29 @@ package factory;
 
 import command.*;
 import game.ToyRobotSimulator;
-import exception.*;
 import models.SimulationCommand;
-import utils.CommandUtil;
 
 public class CommandFactory {
+    private static Command commandExecutor;
 
-    public static Command getCommandExecutor(SimulationCommand command, ToyRobotSimulator toyRobotSimulator) throws InvalidCommandException {
+    public static Command getCommandExecutor(SimulationCommand command, ToyRobotSimulator toyRobotSimulator) {
         switch (command) {
             case PLACE:
-                return new PlaceCommand(toyRobotSimulator.getToyRobot(), toyRobotSimulator.getNewPosition());
+                commandExecutor = new PlaceCommand(toyRobotSimulator.getToyRobot(), toyRobotSimulator.getNewPosition());
+                break;
             case MOVE:
-                return new MoveCommand(toyRobotSimulator.getToyRobot(), toyRobotSimulator.getSquareTableTop());
+                commandExecutor = new MoveCommand(toyRobotSimulator.getToyRobot(), toyRobotSimulator.getSquareTableTop());
+                break;
             case LEFT:
-                return new LeftCommand(toyRobotSimulator.getToyRobot());
+                commandExecutor = new LeftCommand(toyRobotSimulator.getToyRobot());
+                break;
             case RIGHT:
-                return new RightCommand(toyRobotSimulator.getToyRobot());
+                commandExecutor = new RightCommand(toyRobotSimulator.getToyRobot());
+                break;
             case REPORT:
-                return new ReportCommand(toyRobotSimulator.getToyRobot());
-            default:
-                throw new InvalidCommandException(CommandUtil.GAME_COMMAND_HELPER);
+                commandExecutor = new ReportCommand(toyRobotSimulator.getToyRobot());
+                break;
         }
+        return commandExecutor;
     }
 }
