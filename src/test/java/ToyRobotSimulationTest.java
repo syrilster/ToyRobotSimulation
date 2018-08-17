@@ -32,20 +32,20 @@ public class ToyRobotSimulationTest {
     }
 
     @Test
-    public void basicPlacingTest() throws InvalidCommandException, InvalidPositionException {
+    public void executeCommandPlaceAndMove_AtNorth_Should_IncrementYAxisAndMoveToNorth() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("MOVE");
         Assert.assertEquals("Toy Robot position is: (0, 1) facing NORTH", game.executeCommand("REPORT"));
     }
 
     @Test(expected = InvalidPositionException.class)
-    public void testOutOfBoardPlacementIgnored() throws InvalidCommandException, InvalidPositionException {
+    public void executeCommandPlace_OutOfBoard_ExceptionThrown() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 10,0,NORTH");
         game.executeCommand("REPORT");
     }
 
     @Test(expected = InvalidPositionException.class)
-    public void testCommandsBeforePlaceAreIgnored() throws InvalidCommandException, InvalidPositionException {
+    public void executeCommand_WithOutPlace_ExceptionThrown() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("MOVE");
         game.executeCommand("LEFT");
         game.executeCommand("RIGHT");
@@ -53,7 +53,7 @@ public class ToyRobotSimulationTest {
     }
 
     @Test
-    public void testAllCommands() throws InvalidCommandException, InvalidPositionException {
+    public void executeCommands_PlacedAtEast_Should_ReportRobotFacingNorth() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("MOVE");
         game.executeCommand("MOVE");
@@ -63,12 +63,12 @@ public class ToyRobotSimulationTest {
     }
 
     @Test(expected = InvalidCommandException.class)
-    public void testInvalidPlaceCommand() throws InvalidCommandException, InvalidPositionException {
+    public void executeCommand_PlaceMissingArgs_ExceptionThrown() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,EAST");
     }
 
     @Test
-    public void testDuplicatePlaceCommands() throws InvalidCommandException, InvalidPositionException {
+    public void executeDuplicatePlace_Should_AllowFurtherCommands() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("MOVE");
@@ -87,7 +87,7 @@ public class ToyRobotSimulationTest {
     }
 
     @Test(expected = InvalidCommandException.class)
-    public void testInvalidMoveAndRightCommands() throws InvalidCommandException, InvalidPositionException {
+    public void executeInvalidCommands_Should_ExceptionThrown() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 1,2,EAST");
         game.executeCommand("movebla");
         game.executeCommand("leftbb");
@@ -96,7 +96,7 @@ public class ToyRobotSimulationTest {
     }
 
     @Test
-    public void testMoveCommand() throws InvalidCommandException, InvalidPositionException {
+    public void executeCommand_MoveFromNorth_Should_ReportRobotFacingWest() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 0,0,NORTH");
         game.executeCommand("MOVE");
         game.executeCommand("MOVE");

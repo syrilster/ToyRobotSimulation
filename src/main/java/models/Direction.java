@@ -15,7 +15,7 @@ public enum Direction {
 
     static {
         for (Direction directionEnum : Direction.values()) {
-            directionMap.put(directionEnum.directionValue, directionEnum);
+            directionMap.put(directionEnum.getDirectionValue(), directionEnum);
         }
     }
 
@@ -27,11 +27,15 @@ public enum Direction {
         return rotate(1);
     }
 
-    private Direction rotate(int rotationValue) {
-        int newIndex = (this.directionValue + rotationValue) < 0 ?
-                directionMap.size() - 1 : (this.directionValue + rotationValue) % directionMap.size();
+    public Direction rotate(int rotationValue) {
+        int newIndex = (getDirectionValue() + rotationValue) < 0 ?
+                getDirectionMap().size() - 1 : (getDirectionValue() + rotationValue) % getDirectionMap().size();
 
         return Direction.valueOf(directionMap.get(newIndex).toString());
+    }
+
+    public int getDirectionValue() {
+        return directionValue;
     }
 
     public static Map<Integer, Direction> getDirectionMap() {
