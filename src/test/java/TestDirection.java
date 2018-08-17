@@ -9,11 +9,10 @@ import static org.junit.Assert.assertEquals;
 
 public class TestDirection {
     private Direction direction;
-    private static Map<Integer, Direction> directionMap;
+    private static final Map<Integer, Direction> directionMap = new HashMap<>();;
 
     @Before
     public void setUp() {
-        directionMap = new HashMap<>();
         direction = Direction.EAST;
         for (Direction directionEnum : Direction.values()) {
             directionMap.put(directionEnum.getDirectionValue(), directionEnum);
