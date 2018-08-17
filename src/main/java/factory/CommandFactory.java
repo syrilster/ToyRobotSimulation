@@ -5,9 +5,9 @@ import game.ToyRobotSimulator;
 import models.SimulationCommand;
 
 public class CommandFactory {
-    private static Command commandExecutor;
 
     public static Command getCommandExecutor(SimulationCommand command, ToyRobotSimulator toyRobotSimulator) {
+        Command commandExecutor = null;
         switch (command) {
             case PLACE:
                 commandExecutor = new PlaceCommand(toyRobotSimulator.getToyRobot(), toyRobotSimulator.getNewPosition());
