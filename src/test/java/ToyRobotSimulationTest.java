@@ -10,8 +10,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ToyRobotSimulationTest {
-    static final int BOARD_ROWS = 5;
-    static final int BOARD_COLUMNS = 5;
+    static final int BOARD_ROWS = 4;
+    static final int BOARD_COLUMNS = 4;
 
     private Board board;
     Robot toyRobot;
