@@ -24,23 +24,21 @@ public class ToyRobotSimulator {
     public String executeCommand(String inputCommand) throws InvalidCommandException, InvalidPositionException {
         Position position;
         SimulationCommand command;
-        CommandResult commandResult;
         String[] arguments = inputCommand.split(" ");
         String argumentOne = arguments[0];
 
         command = validateAndGetInputCommand(argumentOne);
         position = getPosition(command, arguments);
-        commandResult = executeCommandIfPositionIsValid(position, command);
-        return commandResult != null ? commandResult.getMessage() : "";
+        return executeInputCommandAndGetOutput(position, command);
     }
 
-    private CommandResult executeCommandIfPositionIsValid(Position position, SimulationCommand command) throws InvalidPositionException {
+    private String executeInputCommandAndGetOutput(Position position, SimulationCommand command) throws InvalidPositionException {
         CommandResult commandResult = null;
         if (squareTableTop.isValidPosition(position)) {
             commandResult = CommandFactory.getCommandExecutor(command, this)
                     .execute();
         }
-        return commandResult;
+        return commandResult != null ? commandResult.getMessage() : "";
     }
 
     private Position getPosition(SimulationCommand command, String[] arguments) throws InvalidCommandException, InvalidPositionException {
