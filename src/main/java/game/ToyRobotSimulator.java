@@ -24,20 +24,29 @@ public class ToyRobotSimulator {
     public String executeCommand(String inputCommand) throws InvalidCommandException, InvalidPositionException {
         Position position;
         SimulationCommand command;
-        CommandResult commandResult = null;
+        CommandResult commandResult;
         String[] arguments = inputCommand.split(" ");
         String argumentOne = arguments[0];
 
         command = validateAndGetInputCommand(argumentOne);
-        if (isInputCommandPlace(command) && isValidPlaceCommand(arguments))
-            newPosition = PositionUtil.populateInitialPosition(arguments[1]);
-        position = newPosition != null ? newPosition : toyRobot.getPosition();
+        position = getPosition(command, arguments);
+        commandResult = executeCommandIfPositionIsValid(position, command);
+        return commandResult != null ? commandResult.getMessage() : "";
+    }
+
+    private CommandResult executeCommandIfPositionIsValid(Position position, SimulationCommand command) throws InvalidPositionException {
+        CommandResult commandResult = null;
         if (squareTableTop.isValidPosition(position)) {
-            commandResult = CommandFactory
-                    .getCommandExecutor(command, this)
+            commandResult = CommandFactory.getCommandExecutor(command, this)
                     .execute();
         }
-        return commandResult != null ? commandResult.getMessage() : "";
+        return commandResult;
+    }
+
+    private Position getPosition(SimulationCommand command, String[] arguments) throws InvalidCommandException, InvalidPositionException {
+        if (isInputCommandPlace(command) && isValidPlaceCommand(arguments))
+            newPosition = PositionUtil.populateInitialPosition(arguments[1]);
+        return newPosition != null ? newPosition : toyRobot.getPosition();
     }
 
     private SimulationCommand validateAndGetInputCommand(String command) throws InvalidCommandException {

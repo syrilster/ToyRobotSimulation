@@ -19,6 +19,6 @@ public class PlaceCommand implements Command {
     @Override
     public CommandResult execute() {
         toyRobot.setPosition(position);
-        return CommandUtil.getPlaceCommandResult(Objects.requireNonNull(position));
+        return CommandUtil.getPlaceCommandResult(position);
     }
 }
