@@ -24,14 +24,6 @@ public class ToyRobotSimulationTest {
         game = new ToyRobotSimulator(board, toyRobot);
     }
 
-    @After
-    public void tearDown() {
-        //Clean up here
-        board = null;
-        toyRobot = null;
-        game = null;
-    }
-
     @Test
     public void executeCommandPlaceAndMove_AtNorth_Should_IncrementYAxisAndMoveToNorth() throws InvalidCommandException, InvalidPositionException {
         game.executeCommand("PLACE 0,0,NORTH");
