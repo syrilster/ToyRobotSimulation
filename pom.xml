@@ -8,6 +8,8 @@
     <artifactId>RobotSimulation</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties><exec.mainClass>ToyRobotCommandRunner</exec.mainClass></properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
