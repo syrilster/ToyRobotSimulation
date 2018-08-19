@@ -15,5 +15,4 @@ easy to extend in case we have a new command to be added in the future.
 * Project can be compiled using **mvn compile**
 * Tests can be run using the command **mvn test**
 * Application can be packaged to jar using **mvn package**
-* Once the application is compiled and packaged find the Main runner class in target/classes and use java ToyRobotCommandRunner to start executing the commands.
-* use EXIT/exit command to quit from the application.
+* **To run the commands**:  mvn exec:java (Main class has been set in pom.xml. There is no need to pass it again)
